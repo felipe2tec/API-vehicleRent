@@ -73,14 +73,16 @@ export const updateUser = async (req: Request, res: Response)=>{
 
 export const deleteUser = async (req: Request, res: Response)=>{
     try {
-        const {id} = req.params
-        const result = await User.delete({id: parseInt(id)})
+        const {email} = req.body
+        const result = await User.delete({email: email})
         if(result.affected === 0 ){
             res.status(404).json({
                 message: 'User not found'
             })
         }
-        return res.status(204)
+        return res.status(204).json({
+            message: 'User removed'
+        })
     } catch (error) {
         if(error instanceof Error){
             return res.status(500).json({

@@ -134,8 +134,7 @@
                             "examples":{
                                 "user":{
                                     "value":{
-                                        "email":"felipe2tec@gmail.com",
-                                        "passwd":"password"
+                                        "email":"felipe2tec@gmail.com"
                                     }
                                 }
                             }
@@ -144,7 +143,7 @@
                 },
                 "responses":{
                     "204":{
-                        "description":"Usuario alterado"
+                        "description":"Usuario removido"
                     },
                     "401":{
                         "description":"Sem autorização"
@@ -201,8 +200,159 @@
                 }
             }
         },
-
-
+        "/users/get_vehicle":{
+            "post":{
+                "summary":"Procura por um  veículo",
+                "description":"Rota responsável por consultar um veículo",
+                "tags":["Vehicles"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/Vehicle"
+                            },
+                            "examples":{
+                                "vehicle":{
+                                    "value":{
+                                        "plate":"1111111"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref":"#/components/schemas/Vehicle"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description":"Sem autorização"
+                    },
+                    "500":{
+                        "description":"Erro"
+                    }
+                }
+            }
+        },
+        "/vehicles/rent_vehicle":{
+            "post":{
+                "summary":"Aluga por um  veículo",
+                "description":"Rota responsável por alugar um veículo, quando passado um usuário que não tenha nenhum veículo alugado.",
+                "tags":["Vehicles"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/Rent"
+                            },
+                            "examples":{
+                                "vehicle":{
+                                    "value":{
+                                        "plate":"1111111",
+                                        "email":"felipe2tec@gmail.com",
+                                        "init_date":"2022-05-15",
+                                        "finishe_date":"2022-05-20"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref":"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description":"Sem autorização"
+                    },
+                    "404":{
+                        "description":"Usuário não existe"
+                    },
+                    "405":{
+                        "description":"Usuário já tem um veículo locado"
+                    },
+                    "406":{
+                        "description":"Veículo não existe"
+                    },
+                    "407":{
+                        "description":"Veículo já locado"
+                    },
+                    "500":{
+                        "description":"Erro"
+                    }
+                }
+            }
+        },
+        "/vehicles/return_vehicle":{
+            "post":{
+                "summary":"Devolve um  veículo",
+                "description":"Rota responsável por devolver um veículo.",
+                "tags":["Vehicles"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/User"
+                            },
+                            "examples":{
+                                "vehicle":{
+                                    "value":{
+                                        "email":"felipe2tec@gmail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref":"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description":"Sem autorização"
+                    },
+                    "404":{
+                        "description":"Usuário não existe"
+                    },
+                    "405":{
+                        "description":"Usuário não tem um veículo locado"
+                    },
+                    "406":{
+                        "description":"Veículo não existe"
+                    },
+                    "500":{
+                        "description":"Erro"
+                    }
+                }
+            }
+        },
         "/vehicles":{
             "post":{
                 "summary":"Cadastro de veículos",
@@ -216,7 +366,7 @@
                                 "$ref":"#/components/schemas/VehicleCreate"
                             },
                             "examples":{
-                                "user":{
+                                "vehicle":{
                                     "value":{
                                         "model":"Opala",
                                         "plate":"1111111",
@@ -262,7 +412,7 @@
                                     "$ref":"#/components/schemas/Vehicle"
                                 },
                                 "examples":{
-                                    "user":{
+                                    "vehicle":{
                                         "value":{
                                             "model":"Opala",
                                             "plate":"1111111",
@@ -284,6 +434,42 @@
                         "description":"Erro"
                     }
                 }
+            },
+            "delete":{
+                "summary":"Remoção de veículos",
+                "description":"Rota responsável por remover um veículo",
+                "tags":["Vehicles"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/Vehicle"
+                            },
+                            "examples":{
+                                "vehicle":{
+                                    "value":{
+                                        "plate":"1111111"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "204":{
+                        "description":"Veículo removido"
+                    },
+                    "401":{
+                        "description":"Sem autorização"
+                    },
+                    "404":{
+                        "description":"Veículo não existe"
+                    },
+                    "500":{
+                        "description":"Erro"
+                    }
+                }
             }
         }
     },
@@ -296,6 +482,9 @@
                         "type":"string"
                     },
                     "passwd":{
+                        "type":"string"
+                    },
+                    "vehicle":{
                         "type":"string"
                     }
                 }
@@ -311,6 +500,23 @@
                     },
                     "daily_price":{
                         "type":"number"
+                    }
+                }
+            },
+            "Rent":{
+                "type":"object",
+                "properties":{
+                    "plate":{
+                        "type":"string"
+                    },
+                    "email":{
+                        "type":"string"
+                    },
+                    "init_date":{
+                        "type":"string"
+                    },
+                    "finishe_date":{
+                        "type":"string"
                     }
                 }
             },
