@@ -1,10 +1,12 @@
 import { Router } from "express"
-import { createUser, getUsers, updateUser, deleteUser } from '../controllers/users.controller'
+import { createUser, getUsers, updateUser, deleteUser, getUser } from '../controllers/users.controller'
 import { ensureAuth } from "../middleware"
 
 const router = Router()
 
-router.post('/users', ensureAuth,createUser)
+router.post('/users', ensureAuth, createUser)
+
+router.post('/users/get_user', ensureAuth, getUser)
 
 router.get('/users', ensureAuth, getUsers)
 

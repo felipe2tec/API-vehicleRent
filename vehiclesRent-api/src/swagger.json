@@ -157,6 +157,134 @@
                     }
                 }
             }
+        },
+        "/users/get_user":{
+            "post":{
+                "summary":"Procura por um  usuário",
+                "description":"Rota responsável por consultar um usuarios",
+                "tags":["Users"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/User"
+                            },
+                            "examples":{
+                                "user":{
+                                    "value":{
+                                        "email":"felipe2tec@gmail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref":"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description":"Sem autorização"
+                    },
+                    "500":{
+                        "description":"Erro"
+                    }
+                }
+            }
+        },
+
+
+        "/vehicles":{
+            "post":{
+                "summary":"Cadastro de veículos",
+                "description":"Rota responsável por cadastrar veículos para locação",
+                "tags":["Vehicles"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/VehicleCreate"
+                            },
+                            "examples":{
+                                "user":{
+                                    "value":{
+                                        "model":"Opala",
+                                        "plate":"1111111",
+                                        "daily_price":"100,00"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref":"#/components/schemas/Vehicle"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description":"Sem autorização"
+                    },
+                    "500":{
+                        "description":"Erro"
+                    }
+                }
+            },
+            "get":{
+                "summary":"Consulta de veículos",
+                "description":"Rota responsável por consultar os veículos",
+                "tags":["Vehicles"],
+                "security":[{"bearerAuth":[]}],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref":"#/components/schemas/Vehicle"
+                                },
+                                "examples":{
+                                    "user":{
+                                        "value":{
+                                            "model":"Opala",
+                                            "plate":"1111111",
+                                            "daily_price":"100,00",
+                                            "rent":true,
+                                            "init_date":"2022-05-15",
+                                            "fisishe_date":"2022-05-25",
+                                            "id_user":"2"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description":"Sem autorização"
+                    },
+                    "500":{
+                        "description":"Erro"
+                    }
+                }
+            }
         }
     },
     "components":{
@@ -169,6 +297,46 @@
                     },
                     "passwd":{
                         "type":"string"
+                    }
+                }
+            },
+            "VehicleCreate":{
+                "type":"object",
+                "properties":{
+                    "plate":{
+                        "type":"string"
+                    },
+                    "model":{
+                        "type":"string"
+                    },
+                    "daily_price":{
+                        "type":"number"
+                    }
+                }
+            },
+            "Vehicle":{
+                "type":"object",
+                "properties":{
+                    "plate":{
+                        "type":"string"
+                    },
+                    "model":{
+                        "type":"string"
+                    },
+                    "daily_price":{
+                        "type":"number"
+                    },
+                    "rent":{
+                        "type":"boolean"
+                    },
+                    "init_date":{
+                        "type":"string"
+                    },
+                    "fisinhe_date":{
+                        "type":"string"
+                    },
+                    "id_user":{
+                        "type":"number"
                     }
                 }
             }

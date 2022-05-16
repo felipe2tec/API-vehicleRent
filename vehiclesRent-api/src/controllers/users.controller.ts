@@ -34,9 +34,14 @@ export const getUsers = async(req: Request, res: Response)=>{
 
 export const getUser = async(req: Request, res: Response)=>{
     try {
-        const {id} = req.params
-        const users = await User.findOneBy({id: parseInt(id)})
-        res.json(users)
+        const { email } = req.body
+        const user = await User.findOneBy({
+            email: email
+        })
+        if(!user) return res.status(404).json({
+            message: 'User does exists'
+        })
+        res.json(user)
     } catch (error) {
         if(error instanceof Error){
             return res.status(500).json({

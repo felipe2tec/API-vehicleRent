@@ -5,7 +5,9 @@ export class Vehicle extends BaseEntity{
     @PrimaryGeneratedColumn()
     id:number
 
-    @Column()
+    @Column({
+        default:null
+    })
     id_user:number
 
     @Column({
@@ -24,7 +26,7 @@ export class Vehicle extends BaseEntity{
     @Column({
         default:10
     })
-    dailyPrice:number
+    daily_price:number
 
     @Column({
         default:null
