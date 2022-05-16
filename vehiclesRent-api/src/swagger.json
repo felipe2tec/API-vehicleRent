@@ -12,6 +12,10 @@
         {
             "url":"http://127.0.0.1:3100",
             "description":"API de desenvolvimento"
+        },
+        {
+            "url":"http://vps39115.publiccloud.com.br:3100",
+            "description":"API de Produção"
         }
     ],
     "paths":{
