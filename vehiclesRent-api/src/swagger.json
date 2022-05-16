@@ -1,0 +1,184 @@
+{
+    "openapi":"3.0.0",
+    "info":{
+        "title":"VehiclesRent-api",
+        "description":"Essa API tem como objetivo locar carros",
+        "contact":{
+            "email":"felipe2tec@gmail.com"
+        },
+        "version":"1.0.0"
+    },
+    "servers":[
+        {
+            "url":"http://127.0.0.1:3100",
+            "description":"API de desenvolvimento"
+        }
+    ],
+    "paths":{
+        "/users":{
+            "post":{
+                "summary":"Cadastro de usuários",
+                "description":"Rota responsável por cadastrar usuarios capazes de locar veículos",
+                "tags":["Users"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/User"
+                            },
+                            "examples":{
+                                "user":{
+                                    "value":{
+                                        "email":"felipe2tec@gmail.com",
+                                        "passwd":"password"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref":"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description":"Sem autorização"
+                    },
+                    "500":{
+                        "description":"Erro"
+                    }
+                }
+            },
+            "get":{
+                "summary":"Consulta de usuários",
+                "description":"Rota responsável por consultar os usuarios ",
+                "tags":["Users"],
+                "security":[{"bearerAuth":[]}],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref":"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description":"Sem autorização"
+                    },
+                    "500":{
+                        "description":"Erro"
+                    }
+                }
+            },
+            "put":{
+                "summary":"Alteração de usuários",
+                "description":"Rota responsável por alterar um usuario",
+                "tags":["Users"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/User"
+                            },
+                            "examples":{
+                                "user":{
+                                    "value":{
+                                        "email":"felipe2tec@gmail.com",
+                                        "passwd":"password"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "204":{
+                        "description":"Usuario alterado"
+                    },
+                    "401":{
+                        "description":"Sem autorização"
+                    },
+                    "404":{
+                        "description":"Usuario não existe"
+                    },
+                    "500":{
+                        "description":"Erro"
+                    }
+                }
+            },
+            "delete":{
+                "summary":"Remoção de usuários",
+                "description":"Rota responsável por remover um usuario",
+                "tags":["Users"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/User"
+                            },
+                            "examples":{
+                                "user":{
+                                    "value":{
+                                        "email":"felipe2tec@gmail.com",
+                                        "passwd":"password"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "204":{
+                        "description":"Usuario alterado"
+                    },
+                    "401":{
+                        "description":"Sem autorização"
+                    },
+                    "404":{
+                        "description":"Usuario não existe"
+                    },
+                    "500":{
+                        "description":"Erro"
+                    }
+                }
+            }
+        }
+    },
+    "components":{
+        "schemas":{
+            "User":{
+                "type":"object",
+                "properties":{
+                    "email":{
+                        "type":"string"
+                    },
+                    "passwd":{
+                        "type":"string"
+                    }
+                }
+            }
+        },
+        "securitySchemes":{
+            "bearerAuth":{
+                "type":"http",
+                "scheme":"bearer",
+                "bearerFormate":"JWT"
+            }
+        }
+    }
+}

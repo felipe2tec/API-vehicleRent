@@ -6,7 +6,7 @@ export class User extends BaseEntity{
     id:number
 
     @Column({
-        unique: true
+        unique: true,
     })
     email:string
 
@@ -17,16 +17,6 @@ export class User extends BaseEntity{
         default:-1
     })
     vehicle:number
-    
-    @Column({
-        default:null
-    })
-    init_date:Date
-
-    @Column({
-        default:null
-    })
-    finishe_date:Date
 
     @CreateDateColumn()
     createdAt:Date
