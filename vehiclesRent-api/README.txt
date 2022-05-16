@@ -14,6 +14,10 @@ docker exec postgreapi psql -c "CREATE DATABASE vehiclerent" -U postgres
 #RODANTO O PROJETO EM DESENVOLVIMENTO
 npm run dev
 
+#BUILDAR O PROJETO 
+npm run build
+npm run start
+
 #ACESSAR SWAGGER
 #SENHA admin
 
