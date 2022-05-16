@@ -21,5 +21,5 @@ npm run dev
 #Acesso maquina local
 http://127.0.0.1:3100/api-docs 
 
-#Acesso maquina remota
-http://IPREMOTO:3100/api-docs 
+#Acesso maquina produção
+http://vps39115.publiccloud.com.br::3100/api-docs 
