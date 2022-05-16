@@ -15,6 +15,8 @@ docker exec postgreapi psql -c "CREATE DATABASE vehiclerent" -U postgres
 npm run dev
 
 #ACESSAR SWAGGER
+#SENHA admin
+
 
 #Acesso maquina local
 http://127.0.0.1:3100/api-docs 
