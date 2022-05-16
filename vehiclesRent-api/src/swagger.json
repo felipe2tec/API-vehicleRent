@@ -249,7 +249,7 @@
         },
         "/vehicles/rent_vehicle":{
             "post":{
-                "summary":"Aluga por um  veículo",
+                "summary":"Aluga um veículo",
                 "description":"Rota responsável por alugar um veículo, quando passado um usuário que não tenha nenhum veículo alugado.",
                 "tags":["Vehicles"],
                 "security":[{"bearerAuth":[]}],
