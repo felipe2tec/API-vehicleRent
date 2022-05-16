@@ -1,0 +1,3 @@
+docker pull postgres
+docker run --name postgreapi -p5432:5432 -e POSTGRES_PASSWORD=pass1234 postgres
+docker exec postgreapi psql -c "CREATE DATABASE vehiclerent" -U postgres

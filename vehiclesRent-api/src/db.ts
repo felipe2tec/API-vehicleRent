@@ -5,10 +5,10 @@ import { Vehicle } from "./entities/Vehicle"
 export const AppDataSource = new DataSource({
     type: "postgres",
     host: "localhost",
-    username: "apiuser",
+    username: "postgres",
     password: "pass1234",
     port: 5432,
-    database: "vehiclesrent",
+    database: "vehiclerent",
     entities: [User, Vehicle],
     logging:true,
     synchronize:true
